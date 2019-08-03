@@ -2,9 +2,9 @@ import {
 	AxiosRequestConfig,
 	AxiosPromise,
 	AxiosResponse
-} from './types'
+} from '../types'
 
-import {parseHeaders} from './helpers/headers'
+import {parseHeaders} from '../helpers/headers'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 	return new Promise((resolve, reject) => {
@@ -59,7 +59,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 			reject(new Error(`Timeout of ${timeout} ms exceeded`))
 		}
 
-		request.open(method.toUpperCase(), url, async: true)
+		request.open(method.toUpperCase(), url!, async: true)
 
 		Object.keys(headers).forEach(name => {
 			if (data === null && name.toLowerCase() === 'content-type') {
