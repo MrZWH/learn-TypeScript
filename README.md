@@ -182,3 +182,9 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 #### 错误信息增强
 
 希望对外提供的信息不仅仅包含错误文本信息，还包括了请求对象配置`config`, 错误代码`code`, `XMLHttpRequest` 对象实例 `request` 以及自定义响应对象 `response`。
+
+### 混合对象实现
+
+### 函数重载
+
+### 拦截器的实现
