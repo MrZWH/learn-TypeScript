@@ -192,3 +192,7 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 ### 拦截器的链式调用
 
 ### 合并配置的设计与实现
+
+### 静态方法扩展
+
+### 取消功能的设计与实现
