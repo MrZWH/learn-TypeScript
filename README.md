@@ -122,7 +122,7 @@ tsc greeter.ts
 - 支持请求和响应的拦截器
 - 支持请求数据和响应数据的转换
 - 支持请求的取消
-- JSON 数据的自动转换	
+- JSON 数据的自动转换
 - 客户端防止 XSRF
 
 这次重构不包括 node 中的实现。
@@ -190,3 +190,5 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 ### 拦截器的实现
 
 ### 拦截器的链式调用
+
+### 合并配置的设计与实现
