@@ -197,4 +197,8 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 
 ### 取消功能的设计与实现
 
-10-1 13:00
+### withCredentials
+
+安装 `cookie-parser` 这个 npm 包才能在 service 端通过 `req.cookies` 拿到 cookie
+
+### XSRF 防御
