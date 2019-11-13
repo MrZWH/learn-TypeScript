@@ -202,3 +202,13 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 安装 `cookie-parser` 这个 npm 包才能在 service 端通过 `req.cookies` 拿到 cookie
 
 ### XSRF 防御
+
+### 上传和下载的进度监控
+
+`connect-multiparty` npm 包
+
+### HTTP 授权
+
+`btoa` 方法可以将字符串按 base64 编码，`atob` 可以将 base64 编码的解码，浏览器端有`atob`方法，nodejs 中没有，需引入同名库。
+
+### 自定义合法状态码
