@@ -250,3 +250,7 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 ### 自动化部署
 
 12.1 3：33
+
+## ts 写个爬虫
+
+[ts 写个爬虫](./web-scraping)
