@@ -29,6 +29,8 @@ tsc -V # 查看版本
 tsc greeter.ts
 ```
 
+在 node 环境运行的便利工具 `ts-node`: `npm i -g ts-node`
+
 `interface`接口类型，就是对象的一个描述。
 
 ### 基础类型
@@ -68,9 +70,13 @@ tsc greeter.ts
 
 - 继承
 - 公共，私有与受保护的修饰符
+  - public
+  - private
+  - protected
 - readonly 修饰符
 - 存取器
 - 静态属性
+- 实现一个单例模式
 - 抽象类
 - 高级技巧
 

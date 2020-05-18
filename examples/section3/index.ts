@@ -16,7 +16,7 @@ function printLabel(labelledObj: LabelledValue) {
 	console.log(labelledObj.label)
 }
 
-let myObj = {size: 10, label: 'Size 10 Object'}
+let myObj = { size: 10, label: 'Size 10 Object' }
 
 printLabel(myObj)
 
@@ -40,7 +40,7 @@ function createSquare(config: SquareConfig): Square {
 		area: 100
 	}
 
-	if(config.color) {
+	if (config.color) {
 		newSquare.color = config.color
 	}
 
@@ -50,7 +50,7 @@ function createSquare(config: SquareConfig): Square {
 	return newSquare
 }
 
-let mySquare = createSquare({color: 'black'})
+let mySquare = createSquare({ color: 'black' })
 
 
 
@@ -65,17 +65,12 @@ interface Point {
 	readonly y: number
 }
 
-let p1: Point = {x: 10, y: 20}
-p1.x = 5 // 会报错
-
-
-
-
-
+let p1: Point = { x: 10, y: 20 }
+// p1.x = 5 // 会报错
 
 let a: number[] = [1, 2, 3, 4]
 let ro: ReadonlyArray<number> = a
-ro[0] = 12 // 会报错
+// ro[0] = 12 // 会报错
 
 
 
@@ -104,7 +99,7 @@ interface SearchFunc {
 
 let mySearch: SearchFunc
 mySearch = function (src, sub): boolean {
-	let result = source.search(subString)
+	let result = src.search(sub)
 	return result > -1
 }
 
@@ -156,20 +151,20 @@ class Clock implements ClockInterface {
 
 
 // 实例部分的接口类型
-interface ClockInterface {
+interface ClockInterface1 {
 	tick()
 }
 
 // 构造器部分的接口类型
 interface ClockConstructor {
-	new(hour: number, minute: number): ClockInterface
+	new(hour: number, minute: number): ClockInterface1
 }
 
-function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface1 {
 	return new ctor(hour, minute)
 }
 
-class DigitalClock implements ClockInterface {
+class DigitalClock implements ClockInterface1 {
 	constructor(h: number, m: number) {
 
 	}
@@ -179,7 +174,7 @@ class DigitalClock implements ClockInterface {
 	}
 }
 
-class AnalogClock implements ClockInterface {
+class AnalogClock implements ClockInterface1 {
 	constructor(h: number, m: number) {
 
 	}
@@ -206,11 +201,11 @@ interface PenStroke {
 	penWidth: number
 }
 
-interface Square extends Shape, PenStroke {
+interface Square1 extends Shape, PenStroke {
 	sideLength: number
 }
 
-let squre = {} as Square
+let squre = {} as Square1
 squre.color = 'blue'
 squre.sideLength = 10
 squre.penWidth = 5.0
@@ -232,7 +227,7 @@ interface Counter {
 
 function getCounter(): Counter {
 	let counter = (function (start: number) {
-				
+
 	}) as Counter
 
 	counter.interval = 123
@@ -269,15 +264,14 @@ interface SelectableControl extends Control {
 }
 
 class Button extends Control implements SelectableControl {
-	select() {}
+	select() { }
 }
 
 class TextBox extends Control {
-	select() {}
-
+	select() { }
 }
-
-class ImageC implements SelectableControl {
-	select() {}
-	
-}
+// 下面会报错 Class 'ImageControl' incorrectly implements interface 'SelectableControl'. Types have separate declarations of a private property 'state'.
+// class ImageControl implements SelectableControl {
+// 	private state: any;
+// 	select() { };
+// }

@@ -54,7 +54,7 @@ class Horse extends Animal {
 	move(distance: number = 45) {
 		console.log('...')
 		super.move(distance)
-	}	
+	}
 }
 
 let sam = new Snake('Sammy')
@@ -189,7 +189,7 @@ class Employee {
 	}
 
 	set fullName(newName: string) {
-		if(passcode && passcode === 'secret passcode') {
+		if (passcode && passcode === 'secret passcode') {
 			this._fullName = newName
 		} else {
 			console.log('Error: Unauthorized update of employee')
@@ -199,7 +199,7 @@ class Employee {
 
 let employee = new Employee()
 employee.fullName = 'Bob Smith'
-if(employee.fullName) {
+if (employee.fullName) {
 	console.log(employee.fullName)
 }
 
@@ -213,7 +213,7 @@ if(employee.fullName) {
 
 // 静态属性
 class Grid {
-	static origin = {x: 0, y: 0}
+	static origin = { x: 0, y: 0 }
 
 	scale: number
 
@@ -221,7 +221,7 @@ class Grid {
 		this.scale = scale
 	}
 
-	calculateDistanceFromOrigin(point: {x: number, y: number}) {
+	calculateDistanceFromOrigin(point: { x: number, y: number }) {
 		let xDist = point.x - Grid.origin.x
 		let yDist = point.y - Grid.origin.y
 
@@ -232,10 +232,26 @@ class Grid {
 let grid1 = new Grid(1.0)
 let grid2 = new Grid(5.0)
 
-console.log(grid1.calculateDistanceFromOrigin({x: 3, y: 4}))
-console.log(grid2.calculateDistanceFromOrigin({x: 3, y: 4}))
+console.log(grid1.calculateDistanceFromOrigin({ x: 3, y: 4 }))
+console.log(grid2.calculateDistanceFromOrigin({ x: 3, y: 4 }))
 
+// 单例模式
+class Single {
+	private static instance: Single;
+	private constructor(public name: string) { }
 
+	static getInstance() {
+		if (!this.instance) {
+			this.instance = new Single('zhang')
+		}
+		return this.instance;
+	}
+}
+
+const single1 = Single.getInstance()
+const single2 = Single.getInstance()
+console.log(single1.name)
+console.log(single2.name)
 
 
 
@@ -306,7 +322,7 @@ class Greeter {
 	}
 
 	greet() {
-		if(this.greeting) {
+		if (this.greeting) {
 
 			return this.greeting
 		} else {
@@ -343,4 +359,4 @@ interface Point3d extends Point {
 	z: number
 }
 
-let point3d: Point3d = {x: 1, y:2, z:3}
+let point3d: Point3d = { x: 1, y: 2, z: 3 }
