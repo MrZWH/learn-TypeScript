@@ -117,6 +117,27 @@ tsc greeter.ts
 
 示例代码：`./examples/section8/index.ts`
 
+## tsconfig 文件
+
+如果使用 `tsc <指定文件名>`，则不会应用本地文件下的 tsconfig.json，当只执行 `tsc` 时才会（ts-node 执行加文件名也会应用配置文件规则）。
+
+include、exclude、files 用来规定编译哪些文件。
+
+### compilerOptions
+
+- noImplicitAny any 类型是否也需要显示的设置
+- removeComments 删除注释
+- strictNullChecks 强制检查 null 类型
+- rootDir 编译文件入口
+- outDir 编译文件出口
+- incremental 增量式编译配置项
+- allowJs 是否对 js 文件同样进行编译
+- checkJs 对 js 文件检测
+- sourceMap
+- noUnusedLocals 未被使用的局部变量
+- noUnusedParameters 未被使用的函数参数变量
+- baseUrl 项目根路径
+
 ## TypeScript 重构 axios
 
 ### 需求分析
