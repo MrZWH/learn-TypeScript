@@ -41,6 +41,7 @@ tsc greeter.ts
 - 数组
 - 元祖 Tuple
 - 枚举
+  - 从 0 开始，也可以反查
 - any
 - void
 - null 和 undefined
@@ -98,6 +99,9 @@ tsc greeter.ts
 - 泛型类
 - 泛型约束
 
+- 在函数中使用泛型
+- 在类中使用泛型
+
 示例代码：`./examples/section6/index.ts`
 
 ### 类型推断
@@ -111,11 +115,21 @@ tsc greeter.ts
 
 - 交叉类型
 - 联合类型
+  - 使用联合类型时只会允许共有的属性
 - 类型保护
+  - 使用 as
+  - 使用 in
+  - 使用 typeof
+  - 使用 instanceof
 - 可为 null 的类型
 - 字符串字面量类型
 
 示例代码：`./examples/section8/index.ts`
+
+### namespace
+
+- 在 namespace 中如何暴露变量
+- 如何显式引用其它 namespace
 
 ## tsconfig 文件
 
@@ -137,6 +151,89 @@ include、exclude、files 用来规定编译哪些文件。
 - noUnusedLocals 未被使用的局部变量
 - noUnusedParameters 未被使用的函数参数变量
 - baseUrl 项目根路径
+- outFile 把所有输出文件放到一个文件里面
+
+## 如何编写一个 .d.ts 的类型定义文件
+
+使用 declare 声明。
+
+- 定义全局变量 `declare var`
+- 定义全局函数 `declare function`
+- 声明一个对象 `declare namespace`, 以及对类进行类型定义, 以及命名空间的嵌套
+- 函数重载
+- 定义一个模块化的声明文件
+
+当引入一个 cdn 的 jQuery 时:
+
+```js
+$(function () {
+  $('body').html('<div>123</div>');
+  new $.fn.init();
+});
+```
+
+对应的声明文件:
+
+```typescript
+interface JqueryInstance {
+  html: (html: string) => JqueryInstance;
+}
+
+declare function $(readyFunc: () => void): void;
+declare function $(selector: string): JqueryInstance;
+
+declare namespace $ {
+  namespace fn {
+    class init {}
+  }
+}
+```
+
+当使用 npm 的方式安装 jQuery, ts 的写法:
+
+```typescript
+declare module 'jquery' {
+  interface JqueryInstance {
+    html: (html: string) => JqueryInstance;
+  }
+
+  function $(readyFunc: () => void): void;
+  function $(selector: string): JqueryInstance;
+
+  namespace $ {
+    namespace fn {
+      class init {}
+    }
+  }
+
+  export = $;
+}
+```
+
+## 泛型中 keyof 语法的使用
+
+```typescript
+interface Person {
+  name: string;
+  age: number;
+  gender: string;
+}
+
+class Teacher {
+  constructor(private info: Person) {}
+  getInfo<T extends keyof Person>(key: T): Person[T] {
+    return this.info[key];
+  }
+}
+
+const teacher = new Teacher({
+  name: 'dell',
+  age: 18,
+  gender: 'male',
+});
+
+const test = teacher.getInfo('name');
+```
 
 ## TypeScript 重构 axios
 
