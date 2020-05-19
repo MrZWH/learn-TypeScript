@@ -254,3 +254,7 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 ## ts 写个爬虫
 
 [ts 写个爬虫](./web-scraping)
+
+通过 superagent 去获取网页内容.
+
+通过 cheerio 分析网页内容, 通过类 jQuery 的语法操作.
