@@ -16,6 +16,16 @@ interface Content {
   [propName: number]: Course[];
 }
 export default class DellAnalyzer implements Analyzer {
+  private static instance: DellAnalyzer;
+
+  static getInstance() {
+    if (!DellAnalyzer.instance) {
+      DellAnalyzer.instance = new DellAnalyzer();
+    }
+
+    return DellAnalyzer.instance;
+  }
+
   private getCourseInfo(html: string) {
     const $ = cheerio.load(html);
     const courseItem = $('.course-item');
@@ -34,7 +44,7 @@ export default class DellAnalyzer implements Analyzer {
     };
   }
 
-  generateJsonContext(courseInfo: CourseResult, filePath: string) {
+  private generateJsonContext(courseInfo: CourseResult, filePath: string) {
     let fileContent: Content = {};
     if (fs.existsSync(filePath)) {
       fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -48,4 +58,6 @@ export default class DellAnalyzer implements Analyzer {
     const fileContent = this.generateJsonContext(courseInfo, filePath);
     return JSON.stringify(fileContent);
   }
+
+  private constructor() {}
 }
