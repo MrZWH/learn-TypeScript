@@ -235,6 +235,60 @@ const teacher = new Teacher({
 const test = teacher.getInfo('name');
 ```
 
+## 装饰器
+
+### 类的装饰器
+
+```typescript
+function testDecorator() {
+  return function <T extends new (...args: any[]) => any>(constructor: T) {
+    return class extends constructor {
+      name = 'lee';
+      getName() {
+        return this.name;
+      }
+    };
+  };
+}
+
+const Test = testDecorator()(
+  class {
+    name: string;
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+);
+
+const test = new Test('zhang');
+```
+
+### 方法的装饰器
+
+- 普通方法, target 对应的是类的 prototype
+- 静态方法, target 对应的是类的构造函数
+
+```typescript
+function getNameDeorator(target: any, key: string, descriptor: PropertyDescriptor) {
+  descriptor.writable = true;
+  descriptor.value = function {
+    return 'descriptor'
+  }
+}
+```
+
+### 访问器的装饰器
+
+get 或 set 只能选一个使用装饰器
+
+### 属性的装饰器
+
+返回的 descriptor 会替换原始属性的 descriptor.
+
+当你使用属性装饰器, 想要对属性的值做修改实际上是做不到的.
+
+### 参数的装饰器
+
 ## TypeScript 重构 axios
 
 ### 需求分析
