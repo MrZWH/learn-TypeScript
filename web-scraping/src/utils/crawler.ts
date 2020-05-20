@@ -1,16 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import superagent from 'superagent';
-import cheerio from 'cheerio';
-
-import DellAnalyzer from './dellAnalyzer';
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string;
 }
 
-class Crawler {
-  private filePath = path.resolve(__dirname, '../data/course.json');
+export default class Crawler {
+  private filePath = path.resolve(__dirname, '../../data/course.json');
 
   private async getRawHtml() {
     const result = await superagent.get(this.url);
@@ -31,9 +28,3 @@ class Crawler {
     this.initSpiderProcess();
   }
 }
-
-const secret = 'secretKey';
-const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
-
-const analyzer = DellAnalyzer.getInstance();
-new Crawler(url, analyzer);

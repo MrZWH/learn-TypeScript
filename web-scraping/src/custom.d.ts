@@ -1,0 +1,3 @@
+namespace Express {
+  interface Request {}
+}

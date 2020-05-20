@@ -380,3 +380,13 @@ post 请求 send `new URLSearchParams(paramsString)` data，浏览器会添加�
 nodemon 监听文件变化 重新执行命令
 
 concurrently 并行执行两个命令
+
+### 使用 express 升级项目
+
+问题 1: express 库的类型定义文件 .d.ts 文件类型描述不准确
+
+问题 2: 当我使用中间件的时候, 对 req 或者 res 做了修改之后呢, 实际上其类型并不能改变
+
+使用 body-parser 才能在 req 中获取 body
+
+使用 cookie-session 做登录持久化存储

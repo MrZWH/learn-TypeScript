@@ -30,7 +30,7 @@ export default class DellAnalyzer implements Analyzer {
     const $ = cheerio.load(html);
     const courseItem = $('.course-item');
     const courseInfos: Course[] = [];
-    courseItem.map((index, element) => {
+    courseItem.map((index: any, element: any) => {
       const descs = $(element).find('.course-desc');
       const title = descs.eq(0).text();
       const count = parseInt(descs.eq(1).text().split('：')[1], 10);
