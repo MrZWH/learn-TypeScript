@@ -26,7 +26,7 @@ const checkLogin = (req: Request, res: Response, next: NextFunction): void => {
   }
 };
 
-@controller('/')
+@controller('/api')
 export class CrawlerController {
   @get('/getData')
   @use(checkLogin)
@@ -35,7 +35,7 @@ export class CrawlerController {
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
     const analyzer = Analyzer.getInstance();
     new Crawler(url, analyzer);
-    res.json(getResponseData(true));
+    res.json(getResponseData<responseResult.getData>(true));
   }
 
   @get('/showData')
@@ -44,9 +44,9 @@ export class CrawlerController {
     try {
       const position = path.resolve(__dirname, '../../data/course.json');
       const result = fs.readFileSync(position, 'utf8');
-      res.json(getResponseData(JSON.parse(result)));
+      res.json(getResponseData<responseResult.showData>(JSON.parse(result)));
     } catch (e) {
-      res.json(getResponseData(false, '数据不存在'));
+      res.json(getResponseData<responseResult.showData>(false, '数据不存在'));
     }
   }
 }

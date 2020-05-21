@@ -444,3 +444,12 @@ concurrently 并行执行两个命令
 使用 body-parser 才能在 req 中获取 body
 
 使用 cookie-session 做登录持久化存储
+
+类型 echarts.EChartOption 来自 @types/echart 类型定义文件
+
+## 总结
+
+学习 typescript 推荐网站:
+
+- 官网: <https://www.typescriptlang.org/>
+- 抽象语法树的提示: <https://ts-ast-viewer.com/#>
